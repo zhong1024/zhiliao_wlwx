@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" class="x-admin-sm"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/X-admin/css/font.css}">
+    <link rel="stylesheet" th:href="@{/X-admin/css/xadmin.css}">
+    <link rel="stylesheet" th:href="@{/X-admin/css/theme11.min.css}"/>
+    <!-- <link rel="stylesheet" href="./css/theme5.css"> -->
+    <script type="text/javascript" th:src="@{/bootstrap-3.3.7-dist/js/jquery-3.3.1.min.js}"></script>
+    <script th:src="@{/X-admin/lib/layui/layui.js}" charset="utf-8"></script>
+    <script th:src="@{/X-admin/js/xadmin.js}" charset="utf-8"></script>
+    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+    <!--[if lt IE 9]>-->
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+
+    <script th:inline="javascript">
+        $(function () {
+            var id=Number([[${id}]]);
+            $.ajax({
+                url: '/grtEquipmentTypeId.arr',
+                data: {
+                    id : id
+                },
+                success: function (Msg) {
+                    $("#id").val(Msg.datas.id);
+                    $("#businessName").val(Msg.datas.businessName);
+                }
+            })
+        })
+
+    </script>
+</head>
+<body>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12 layui-anim layui-anim-scaleSpring">
+            <div class="layui-col-md12 layui-card ">
+                <div class="layui-card-body">
+                    <form class="layui-form layui-form-pane">
+                        <input type="text" id="id"  name="id" hidden="hidden">
+                        <div class="layui-col-md4 layui-col-md-offset2">
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">商家名</label>
+                                <div class="layui-input-block" style="width: 200px">
+                                    <input type="text" id="businessName"  name="businessName" required lay-verify="required" placeholder="请输入商家名"
+                                           autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        <div class="layui-col-md6 layui-col-md-offset4">
+                            <div class="layui-form-item">
+                                <div class="layui-input-block">
+                                    <button class="layui-btn" lay-submit lay-filter="formDemo">保存</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <script>
+                var id=Number([[${id}]]);
+                //Demo
+                layui.use(['form','laydate'], function () {
+                    var form = layui.form,
+                        laydate = layui.laydate;
+                    //日期
+                    laydate.render({
+                        elem: '#date'
+                    });
+                    laydate.render({
+                        elem: '#date1'
+                    });
+
+                    //监听提交
+                    form.on('submit(formDemo)', function (data) {
+                        //layer.msg(JSON.stringify(data.field));
+                        $.ajax({
+                            url:'/updateEquipmentTypeId.arr',
+                            data: $("form").serialize(),
+                            type: 'post',
+                            success: function (msg) {
+                                location.reload();
+                            }
+                        })
+                    });
+                });
+            </script>
+        </div>
+    </div>
+</div>
+</body>
+</html>
