@@ -18,6 +18,7 @@ import java.util.Map;
 
 /**
  * 商家信息管理Controller
+ *
  * @author Mr.Zhong
  * @create2019-07-30 8:53
  */
@@ -28,34 +29,40 @@ public class EquipmentTypeController {
     @Autowired
     EquipmentTypeService equipmentTypeService;
 
+
+
     /**
-     *
      * @return
      */
     @RequestMapping("ToEquipmentTypeList")
-    public String ToEquipmentTypeList(){
+    public String ToEquipmentTypeList() {
         return "merchants_manage/EquipmentTypeList";
     }
 
 
+    /**
+     *
+     * @param id
+     * @param model
+     * @return
+     */
     @RequestMapping("ToEquipmentTypeUpdate")
-    public String ToEquipmentTypeUpdate(Integer id , Model model){
-        model.addAttribute("id",id);
+    public String ToEquipmentTypeUpdate(Integer id, Model model) {
+        model.addAttribute("id", id);
         return "/merchants_manage/EquipmentTypeUpdate";
     }
 
 
-
-
     /**
-     *  查询所有记录数
+     * 查询所有记录数
+     *
      * @param request
      * @return
      * @throws Exception
      */
     @RequestMapping("EquipmentTypeList")
     @ResponseBody
-    public Map<String, Object> EquipmentTypeList(HttpServletRequest request) throws Exception{
+    public Map<String, Object> EquipmentTypeList(HttpServletRequest request) throws Exception {
         Map<String, Object> map = new HashMap<String, Object>();
 
         PageHelper.startPage(Integer.valueOf(request.getParameter("page")), Integer.valueOf(request.getParameter("limit")));
@@ -72,31 +79,45 @@ public class EquipmentTypeController {
 
 
     /**
-     *  根据ID查询对应的记录数
+     * 根据ID查询对应的记录数
+     *
      * @param id
      * @return
      */
-    @ResponseBody
     @RequestMapping("grtEquipmentTypeId")
-    public Map<String,Object> grtEquipmentTypeId(Integer id ) throws Exception{
-        WlyyBusiness wlyyBusiness = equipmentTypeService.getStaffById(id);
-        Map<String,Object> map = new HashMap<>();
-        map.put("datas",wlyyBusiness);
+    @ResponseBody
+    public Map<String, Object> grtEquipmentTypeId(Integer id) throws Exception {
+        WlyyBusiness wlyyBusiness = equipmentTypeService.selectByPrimaryKey(id);
+        Map<String, Object> map = new HashMap<>();
+        map.put("datas", wlyyBusiness);
         return map;
     }
 
     /**
+     * 修改数据
      *
      * @param wlyyBusiness
      * @return
      */
-    @ResponseBody
     @RequestMapping("updateEquipmentTypeId")
-    public Msg updateEquipmentTypeId(WlyyBusiness wlyyBusiness){
+    @ResponseBody
+    public Msg updateEquipmentTypeId(WlyyBusiness wlyyBusiness) {
         equipmentTypeService.updateEquipmentTypeId(wlyyBusiness);
         return Msg.success();
     }
 
+    /**
+     * 根据ID删除某条数据
+     *
+     * @param
+     * @return
+     */
+    @RequestMapping("deleteEquipmentTypeId")
+    @ResponseBody
+    public Msg deleteEquipmentTypeId(Integer Id) {
+        equipmentTypeService.deleteByPrimaryKey(Id);
+        return Msg.success();
+    }
 
 
 }

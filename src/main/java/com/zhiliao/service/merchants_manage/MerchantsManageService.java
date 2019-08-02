@@ -28,5 +28,15 @@ public class MerchantsManageService {
         return wlyyDeviceTypeMapper.selectByExample(null);
     }
 
+    /**
+     * 根据ID查询某条数据信息
+     * @param id
+     * @return
+     * @throws Exception
+     */
+    public WlyyDeviceType selectByPrimaryKey(Integer id) throws Exception{
+        return wlyyDeviceTypeMapper.selectByPrimaryKey(id);
+    }
+
 
 }

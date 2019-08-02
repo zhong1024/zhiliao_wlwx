@@ -16,11 +16,9 @@ public class IndexServer {
     @RequestMapping("indexArr")
     public String indexArr() throws Exception {
 
-        new Thread(() ->{
-            GetServer.getInstance().initServer(null);
-//            server servers = new server();
-//            servers.initServer(null);
-        }).start();
+//        new Thread(() ->{
+//            GetServer.getInstance().initServer(null);
+//        }).start();
 
         return "/index1";
     }

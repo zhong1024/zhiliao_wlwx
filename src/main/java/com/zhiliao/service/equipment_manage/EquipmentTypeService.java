@@ -34,7 +34,7 @@ public class EquipmentTypeService {
      * @return
      * @throws Exception
      */
-    public WlyyBusiness getStaffById(Integer id) throws Exception{
+    public WlyyBusiness selectByPrimaryKey(Integer id) throws Exception{
         return wlyyBusinessMapper.selectByPrimaryKey(id);
     }
 
@@ -42,8 +42,21 @@ public class EquipmentTypeService {
      * 修改某条信息
      * @param wlyyBusiness
      */
-    public void updateEquipmentTypeId(WlyyBusiness wlyyBusiness){
-        wlyyBusinessMapper.updateByPrimaryKey(wlyyBusiness);
+    public int updateEquipmentTypeId(WlyyBusiness wlyyBusiness){
+        return wlyyBusinessMapper.updateByPrimaryKey(wlyyBusiness);
     }
+
+
+    /**
+     * 根据ID删除某条数据
+      * @param id
+     * @return
+     */
+    public int deleteByPrimaryKey(Integer id){
+        return wlyyBusinessMapper.deleteByPrimaryKey(id);
+    }
+
+
+
 
 }
