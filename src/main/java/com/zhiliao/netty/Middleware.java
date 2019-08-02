@@ -77,12 +77,12 @@ public class Middleware extends ChannelInboundHandlerAdapter {
         // 然后将字节数组转为字符串
         buf.readBytes(reg);
         String body = new String(reg, "UTF-8");
-        System.out.println(Thread.currentThread().getName() + "接收到客户端发送的数据 : " + body);
+        System.out.println(Thread.currentThread().getName() + "Client : " + body);
 
         //回复消息
         //copiedBuffer：创建一个新的缓冲区，内容为里面的参数
         //通过 ChannelHandlerContext 的 write 方法将消息异步发送给客户端
-        String respMsg = "I am Server，消息接收 success!";
+        String respMsg = "8A 01 00 11 9A";
         ByteBuf respByteBuf = Unpooled.copiedBuffer(respMsg.getBytes());
         ctx.write(respByteBuf);
 

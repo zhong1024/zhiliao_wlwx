@@ -15,6 +15,6 @@ public interface TypeData {
     byte CUSTOMER = 3;
 
     //  超过时间未接收到客户端信息（秒）
-    byte XTARR = 10;
+    byte XTARR = 30;
 
 }

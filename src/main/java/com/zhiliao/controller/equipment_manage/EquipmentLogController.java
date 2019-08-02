@@ -49,6 +49,7 @@ public class EquipmentLogController {
 
         PageHelper.startPage(Integer.valueOf(request.getParameter("page")), Integer.valueOf(request.getParameter("limit")));
         List<WlyyDeviceLog> EquipmentLogList = equipmentLogService.selectByExample();
+        
 //        List<WlyyDeviceType> wlyyDeviceTypeList = merchantsManageService.selectByExample(); //物联网类型
 //        String[] wlyyDeviceTypeListARR = new String[wlyyDeviceTypeList.size()];
 //        for(int i = 0;i<wlyyDeviceTypeList.size();i++){
