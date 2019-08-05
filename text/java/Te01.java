@@ -25,11 +25,15 @@ public class Te01 {
 
 
     @Test
-    public void Te01(){
+    public void Te01() {
 //        WlyyDeviceLog wlyyDeviceLog = new WlyyDeviceLog();
 //        wlyyDeviceLog.setAddTime(1541261100);
 ////        wlyyDeviceLog.setTime();
 //        System.out.println(wlyyDeviceLog.getTime());
+
     }
+
+
+
 
 }

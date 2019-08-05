@@ -6,6 +6,7 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.timeout.IdleStateHandler;
 
+
 /**
  * 服务端server
  * @author Mr.Zhong
@@ -51,5 +52,14 @@ public class server implements TypeData {
             workerGroup.shutdownGracefully();
         }
     }
+
+
+    public static void main(String[] args) {
+
+        server servers = new server();
+        servers.initServer(null);
+
+    }
+
 
 }
