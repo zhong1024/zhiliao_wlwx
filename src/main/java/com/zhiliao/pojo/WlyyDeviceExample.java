@@ -3,6 +3,11 @@ package com.zhiliao.pojo;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Mr.Zhong
+ * @create2019-08-01 14:13
+ */
+
 public class WlyyDeviceExample {
     protected String orderByClause;
 

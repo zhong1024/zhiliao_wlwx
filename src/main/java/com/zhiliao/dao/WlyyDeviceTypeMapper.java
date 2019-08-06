@@ -5,6 +5,11 @@ import com.zhiliao.pojo.WlyyDeviceTypeExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
+/**
+ * @author Mr.Zhong
+ * @create2019-08-01 14:13
+ */
+
 public interface WlyyDeviceTypeMapper {
     int countByExample(WlyyDeviceTypeExample example);
 

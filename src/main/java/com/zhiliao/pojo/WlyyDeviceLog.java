@@ -8,6 +8,9 @@ import java.util.Date;
 
 /**
  * 日志信息pojo
+ *
+ * @author Mr.Zhong
+ * @create2019-08-01 14:13
  */
 public class WlyyDeviceLog {
     //  编号
@@ -17,7 +20,7 @@ public class WlyyDeviceLog {
     //  日期时间戳
     private Integer addTime;
     //  显示时间
-    private String  time;
+    private String time;
     //  物联网类型
     private Integer typeId;
     //  显示物联网类型
@@ -26,7 +29,6 @@ public class WlyyDeviceLog {
     private Integer businessId;
     //  显示商家名称
     private String businessName;
-
 
 
     public Integer getId() {
@@ -70,10 +72,10 @@ public class WlyyDeviceLog {
     }
 
     public String getTime() {
-        if(addTime!=0){
-            SimpleDateFormat unix_time=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            time=unix_time.format(new Date(Long.valueOf(addTime+"000")));
-        }else
+        if (addTime != 0) {
+            SimpleDateFormat unix_time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            time = unix_time.format(new Date(Long.valueOf(addTime + "000")));
+        } else
             time = null;
         return time;
     }

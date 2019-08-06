@@ -5,7 +5,13 @@ import com.zhiliao.pojo.WlyyDeviceLogExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
+/**
+ * @author Mr.Zhong
+ * @create2019-08-01 14:13
+ */
+
 public interface WlyyDeviceLogMapper {
+
     int countByExample(WlyyDeviceLogExample example);
 
     int deleteByExample(WlyyDeviceLogExample example);
@@ -27,4 +33,7 @@ public interface WlyyDeviceLogMapper {
     int updateByPrimaryKeySelective(WlyyDeviceLog record);
 
     int updateByPrimaryKey(WlyyDeviceLog record);
+
+    //  根据ID修改在线状态
+    int updateTypeKey(WlyyDeviceLog record);
 }

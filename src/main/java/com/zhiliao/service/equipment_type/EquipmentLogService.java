@@ -29,4 +29,9 @@ public class EquipmentLogService {
         return wlyyDeviceLogMapper.selectByExample(null);
     }
 
+
+    public int updateTypeKey(WlyyDeviceLog wlyyDeviceLog) throws Exception{
+        return wlyyDeviceLogMapper.updateTypeKey(wlyyDeviceLog);
+    }
+
 }

@@ -182,6 +182,19 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
+
+
+<update id="updateTypeKey" parameterType="com.zhiliao.pojo.WlyyDeviceLog">
+  update wlyy_device_log
+  <set>
+    <if test="typeId != null">
+      type_id = #{typeId,jdbcType=BIT}
+    </if>
+  </set>
+  where id = #{id,jdbcType=INTEGER}
+</update>
+
+
   <update id="updateByPrimaryKeySelective" parameterType="com.zhiliao.pojo.WlyyDeviceLog" >
     update wlyy_device_log
     <set >

@@ -3,13 +3,14 @@ package com.zhiliao.netty;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.Channel;
-import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.handler.timeout.IdleStateEvent;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.zhiliao.util.Hex22String.hexItr2Arr;
 
 
 /**
@@ -72,31 +73,35 @@ public class Middleware extends ChannelInboundHandlerAdapter {
         //回复消息
         //copiedBuffer：创建一个新的缓冲区，内容为里面的参数
         //通过 ChannelHandlerContext 的 write 方法将消息异步发送给客户端
-//        HexString2Bytes("80 01 00 33 B2");
-//        ByteBuf respByteBuf = Unpooled.copiedBuffer(respMsg.getBytes());
 
-        if(be!="8a0101008a") {
-            byte[] c = {(byte) 0x8A, (byte) 0x01, (byte) 0x01, (byte) 0x11, (byte) 0x9A};
-            byte[] b = {(byte) 0x80, (byte) 0x01, (byte) 0x00, (byte) 0x33, (byte) 0xB2};
-            ByteBuf respByteBuf = Unpooled.copiedBuffer(c);
+        if ("14796707710".equals(body)) {
+//            byte[] c = {(byte) 0x8A, (byte) 0x01, (byte) 0x01, (byte) 0x11, (byte) 0x9B};
+//            byte[] b = {(byte) 0x80, (byte) 0x01, (byte) 0x00, (byte) 0x33, (byte) 0xB2};
+
+            ByteBuf respByteBuf = Unpooled.copiedBuffer(hexItr2Arr("8A0101119B"));
             ctx.writeAndFlush(respByteBuf);
+        }
+        if ("3134373936373037373130".equals(be)) {
+            System.out.println("--" + true);
+            Thread.sleep(2000);
         }
 
     }
 
 
 
-    public static String bytesToHexString(byte[] be){
+    public static String bytesToHexString(byte[] be) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < be.length; i++) {
             String hex = Integer.toHexString(0xFF & be[i]);
             if (hex.length() == 1) {
                 sb.append('0');
             }
-            sb.append(hex+" ");
+            sb.append(hex );
         }
         return sb.toString().toUpperCase();
     }
+
 
 
 
@@ -105,30 +110,6 @@ public class Middleware extends ChannelInboundHandlerAdapter {
     //  获取数据正在打印
     protected void handlerData(ChannelHandlerContext ctx, Object msg) {
     }
-
-
-
-//
-//    public static byte[] HexString2Bytes(String src) {
-//        if (null == src || 0 == src.length()) {
-//            return null;
-//        }
-//        byte[] ret = new byte[src.length() / 2];
-//        byte[] tmp = src.getBytes();
-//        for (int i = 0; i < (tmp.length / 2); i++) {
-//            ret[i] = uniteBytes(tmp[i * 2], tmp[i * 2 + 1]);
-//        }
-//        return ret;
-//    }
-//
-//
-//    public static byte uniteBytes(byte src0, byte src1) {
-//        byte _b0 = Byte.decode("0x" + new String(new byte[] {src0})).byteValue();
-//        _b0 = (byte) (_b0 << 4);
-//        byte _b1 = Byte.decode("0x" + new String(new byte[] { src1 })).byteValue();
-//        byte ret = (byte) (_b0 ^ _b1);
-//        return ret;
-//    }
 
 
     protected void sendPingMsg(ChannelHandlerContext ctx) {
@@ -155,6 +136,9 @@ public class Middleware extends ChannelInboundHandlerAdapter {
 
         System.out.println(name + " 发送pong msg " + ctx.channel().remoteAddress() + " , count :" + heartbeatCount);
     }
+
+
+
 
 
     /**
@@ -197,16 +181,34 @@ public class Middleware extends ChannelInboundHandlerAdapter {
         System.err.println("读空闲");
     }
 
+
+
+
+    /**
+     * 对设备连接上时进行数据更改
+     *
+     * @param ctx
+     * @throws Exception
+     */
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         // TODO Auto-generated method stub
+
+
         System.err.println(" 已连接：" + ctx.channel().remoteAddress() + "===");
 
     }
 
+    /**
+     * 对设备离线时进行数据更改
+     *
+     * @param ctx
+     * @throws Exception
+     */
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
         // TODO Auto-generated method stub
+
         System.err.println(" 已断开：" + ctx.channel().remoteAddress() + "===");
     }
 }

@@ -1,6 +1,9 @@
+import com.zhiliao.dao.WlyyDeviceLogMapper;
 import com.zhiliao.netty.GetServer;
 import com.zhiliao.netty.Text.TimeClient;
 import com.zhiliao.pojo.WlyyDeviceLog;
+import com.zhiliao.service.equipment_type.EquipmentLogService;
+import com.zhiliao.util.Hex22String;
 import org.junit.Test;
 
 /**
@@ -25,11 +28,15 @@ public class Te01 {
 
 
     @Test
-    public void Te01() {
-//        WlyyDeviceLog wlyyDeviceLog = new WlyyDeviceLog();
-//        wlyyDeviceLog.setAddTime(1541261100);
-////        wlyyDeviceLog.setTime();
-//        System.out.println(wlyyDeviceLog.getTime());
+    public void Te01() throws Exception{
+//        Hex22String hex22String = new Hex22String();
+//        System.out.println( hex22String.str2HexStr("ALIVEOK",true,"UTF-8"));
+
+        EquipmentLogService equipmentLogService = new  EquipmentLogService();
+        WlyyDeviceLog wlyyDeviceLog = new WlyyDeviceLog();
+        wlyyDeviceLog.setId(1);
+        wlyyDeviceLog.setTypeId(1);
+        equipmentLogService.updateTypeKey(wlyyDeviceLog);
 
     }
 

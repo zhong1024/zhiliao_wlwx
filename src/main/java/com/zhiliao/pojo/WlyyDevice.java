@@ -3,10 +3,13 @@ package com.zhiliao.pojo;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-
 /**
  * 设备信息
+ *
+ * @author Mr.Zhong
+ * @create2019-08-01 14:13
  */
+
 public class WlyyDevice {
     //  编号
     private Integer id;
@@ -23,7 +26,7 @@ public class WlyyDevice {
     //  注册时间
     private Integer addTime;
     //  显示时间
-    private String  time;
+    private String time;
     //  商家ID
     private Integer businessId;
 
@@ -84,18 +87,18 @@ public class WlyyDevice {
     }
 
     public String getTypeStatus() {
-        if(status){
-            typeStatus="在线";
-        }else{
-            typeStatus="未在线";
+        if (status) {
+            typeStatus = "在线";
+        } else {
+            typeStatus = "未在线";
         }
         return typeStatus;
     }
 
     public String getTime() {
-        if(addTime!=0){
-            SimpleDateFormat unix_time=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            time=unix_time.format(new Date(Long.valueOf(addTime+"000")));
+        if (addTime != 0) {
+            SimpleDateFormat unix_time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            time = unix_time.format(new Date(Long.valueOf(addTime + "000")));
         }
         return time;
     }

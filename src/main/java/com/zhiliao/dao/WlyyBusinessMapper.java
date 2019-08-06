@@ -5,6 +5,11 @@ import com.zhiliao.pojo.WlyyBusinessExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
+/**
+ * @author Mr.Zhong
+ * @create2019-08-01 14:13
+ */
+
 public interface WlyyBusinessMapper {
     //  按条件计数
     int countByExample(WlyyBusinessExample example);

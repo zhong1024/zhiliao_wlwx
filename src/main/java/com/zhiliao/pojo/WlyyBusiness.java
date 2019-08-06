@@ -2,7 +2,11 @@ package com.zhiliao.pojo;
 
 /**
  * 商家信息pojo
+ *
+ * @author Mr.Zhong
+ * @create2019-08-01 14:13
  */
+
 public class WlyyBusiness {
     //  ID
     private Integer id;
