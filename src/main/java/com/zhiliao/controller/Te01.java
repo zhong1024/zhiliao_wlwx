@@ -24,35 +24,4 @@ public class Te01 {
     MerchantsManageService merchantsManageService;
 
 
-    private List<Channel> channellist;
-
-    @RequestMapping("sql")
-    public String sqlArr() {
-
-        System.out.println(teService.getAll().getBusinessName());
-
-        return "ok";
-    }
-
-    @RequestMapping("sqlList")
-    public String sqlList() throws Exception{
-        System.out.println(merchantsManageService.selectByExample().get(0).getName());
-        return "ok";
-    }
-
-    @RequestMapping("telist")
-    public void telists(){
-        System.out.println("size:"+GetServer.getInitialize().getObjectList().size());
-        if(GetServer.getInitialize().getObjectList().size()!=0)
-        GetServer.getInitialize().getObjectList().get(0).writeAndFlush("BigBang");
-    }
-
-
-    @RequestMapping("memberlists")
-    public String memberlist(){
-        return "member-list";
-    }
-
-
-
 }

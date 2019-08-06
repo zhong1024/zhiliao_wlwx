@@ -33,6 +33,10 @@
 		<property name="minIdle" value="5" />
 	</bean>
 
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.zhiliao.dao"/>
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+	</bean>
 
 	<!-- MyBatis sql文件 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -57,10 +61,6 @@
 
 	</bean>
 
-	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.zhiliao.dao"/>
-		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
-	</bean>
 
 	<!-- 配置Spring的声明式事务管理 -->
 	<!-- 配置事务管理器 -->

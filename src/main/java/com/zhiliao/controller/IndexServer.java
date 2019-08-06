@@ -1,7 +1,4 @@
 package com.zhiliao.controller;
-
-import com.zhiliao.netty.GetServer;
-import com.zhiliao.netty.server;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -16,13 +13,6 @@ public class IndexServer {
 
     @RequestMapping("indexArr")
     public String indexArr() throws Exception {
-
-        new Thread(() -> {
-            server servers = new server();
-            servers.initServer(null);
-//            GetServer.getInstance().initServer(null);
-        }).start();
-
         return "/index1";
     }
 

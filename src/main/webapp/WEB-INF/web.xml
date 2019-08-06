@@ -33,11 +33,14 @@
     </init-param>
     <!-- 服务器启动的时候，让DispatcherServlet对象创建 -->
     <load-on-startup>1</load-on-startup>
+
+
   </servlet>
   <servlet-mapping>
     <servlet-name>dispatcherServlet</servlet-name>
     <url-pattern>*.arr</url-pattern>
   </servlet-mapping>
+
 
   <!-- 解决中文乱码过滤器 -->
   <filter>
