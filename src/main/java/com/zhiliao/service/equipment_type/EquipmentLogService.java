@@ -48,8 +48,9 @@ public class EquipmentLogService {
      * @return
      * @throws Exception
      */
-    public List<WlyyDeviceLog> selectAllList() throws Exception {
-        return wlyyDeviceLogMapper.selectAllList();
+    public List<WlyyDeviceLog> selectAllList(String searContent) throws Exception {
+        System.out.println(searContent);
+        return wlyyDeviceLogMapper.selectAllList(searContent);
     }
 
 }

@@ -42,20 +42,45 @@ public class EquipmentLogController {
     }
 
 
+//    /**
+//     * 多表关联查询出所有结果集
+//     *
+//     * @param request
+//     * @return
+//     * @throws Exception
+//     */
+//    @RequestMapping("EquipmentLogList")
+//    @ResponseBody
+//    public Map<String, Object> EquipmentLogList(HttpServletRequest request, String searContent) throws Exception {
+//        Map<String, Object> map = new HashMap<String, Object>();
+//
+//        PageHelper.startPage(Integer.valueOf(request.getParameter("page")), Integer.valueOf(request.getParameter("limit")));
+//        List<WlyyDeviceLog> EquipmentLogList = equipmentLogService.selectAllList(searContent);
+//        PageInfo<WlyyDeviceLog> pageInfo = new PageInfo<>(EquipmentLogList);
+//
+//        map.put("code", 0);
+//        map.put("msg", "");
+//        map.put("count", pageInfo.getTotal());  //总记录数
+//        map.put("data", pageInfo.getList());    //结果集
+//        return map;
+//    }
+
+
     /**
      * 多表关联查询出所有结果集
      *
-     * @param request
+     * @param
      * @return
      * @throws Exception
      */
     @RequestMapping("EquipmentLogList")
     @ResponseBody
-    public Map<String, Object> EquipmentLogList(HttpServletRequest request) throws Exception {
+    public Map<String, Object> EquipmentLogList(String searContent, Integer page, Integer limit) throws Exception {
         Map<String, Object> map = new HashMap<String, Object>();
 
-        PageHelper.startPage(Integer.valueOf(request.getParameter("page")), Integer.valueOf(request.getParameter("limit")));
-        List<WlyyDeviceLog> EquipmentLogList = equipmentLogService.selectAllList();
+        PageHelper.startPage(page, limit);
+        List<WlyyDeviceLog> EquipmentLogList = equipmentLogService.selectAllList(searContent);
+        System.out.println(EquipmentLogList);
         PageInfo<WlyyDeviceLog> pageInfo = new PageInfo<>(EquipmentLogList);
 
         map.put("code", 0);

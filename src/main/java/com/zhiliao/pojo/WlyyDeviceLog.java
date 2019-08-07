@@ -29,6 +29,8 @@ public class WlyyDeviceLog {
     private Integer businessId;
     //  显示商家名称
     private String businessName;
+    //  多条件查询条件
+    private Integer searContent;
 
 
     public Integer getId() {
@@ -96,4 +98,11 @@ public class WlyyDeviceLog {
         this.businessName = businessName;
     }
 
+    public Integer getSearContent() {
+        return searContent;
+    }
+
+    public void setSearContent(Integer searContent) {
+        this.searContent = searContent;
+    }
 }

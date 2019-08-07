@@ -21,72 +21,18 @@
 </head>
 <body>
 
-<!--<div class="layui-card-body ">-->
-    <!--<form class="layui-form layui-col-space5">-->
-        <!--<div class="layui-input-inline layui-show-xs-block">-->
-            <!--<input class="layui-input" placeholder="写入时间" name="time" id="time"></div>-->
-        <!--<div class="layui-input-inline layui-show-xs-block">-->
-            <!--<select name="contrller">-->
-                <!--<option value="">订单状态</option>-->
-                <!--<option value="6">智能柜</option>-->
-                <!--<option value="1">出入匝机</option>-->
-                <!--<option value="2">自动售货机</option>-->
-                <!--<option value="3">饮水机</option>-->
-                <!--<option value="4">洗澡</option>-->
-                <!--<option value="5">设备</option>-->
-                <!--<option value="5">共享充电宝</option>-->
-            <!--</select>-->
-        <!--</div>-->
-        <!--<div class="layui-input-inline layui-show-xs-block">-->
-            <!--<input type="text" name="username" placeholder="设备ID" autocomplete="off" class="layui-input"></div>-->
-        <!--<div class="layui-input-inline layui-show-xs-block">-->
-            <!--<input type="text" name="username" placeholder="商家ID" autocomplete="off" class="layui-input"></div>-->
-        <!--<div class="layui-input-inline layui-show-xs-block">-->
-            <!--<button class="layui-btn" lay-submit="" lay-filter="sreach">-->
-                <!--<i class="layui-icon">&#xe615;</i></button>-->
-        <!--</div>-->
-    <!--</form>-->
-<!--</div>-->
 
-
-<!--<script>layui.use(['laydate', 'form'],-->
-    <!--function() {-->
-        <!--var laydate = layui.laydate;-->
-
-        <!--//执行一个laydate实例-->
-        <!--laydate.render({-->
-            <!--elem: '#start' //指定元素-->
-        <!--});-->
-
-        <!--//执行一个laydate实例-->
-        <!--laydate.render({-->
-            <!--elem: '#end' //指定元素-->
-        <!--});-->
-    <!--});-->
-<!--</script>-->
-
-<!--=======================================================================================================-->
-<!--<form class="layui-form" action="#">-->
-<!--<div class="layui-form-item">-->
-<!--<label class="layui-form-label">条件:</label>-->
-<!--<div class="layui-input-inline">-->
-<!--<select  lay-filter="test" id="condition">-->
-<!--<option value="0">不限</option>-->
-<!--<option value="staff_name">设备ID</option>-->
-<!--<option value="staff_sex">写入时间</option>-->
-<!--<option value="staff_age">物联网类型</option>-->
-<!--<option value="staff_mobile_phone">商家ID</option>-->
-<!--</select>-->
-<!--</div>-->
-<!--<div class="layui-input-inline">-->
-<!--<input type="text" id="conditionValue" placeholder="请输入查询内容" autocomplete="off" class="layui-input">-->
-<!--</div>-->
-<!--<div class="layui-input-inline">-->
-<!--<button class="layui-btn layui-btn-radius layui-btn-primary" id="sub_query_form" lay-filter="formDemo" type="button">-->
-<!--<i class="layui-icon layui-icon-search"></i>搜索</button>-->
-<!--</div>-->
-<!--</div>-->
-<!--</form>-->
+<form class="layui-form">
+    <div class="layui-input-inline">
+        <input type="tel" name="searContent" id="searContent" autocomplete="off"
+               placeholder="物联网类型/商家" class="layui-input">
+    </div>
+    <div class="layui-input-inline " style="width: 90px">
+        <button class="layui-btn" id="searchEmailCompany" data-type="reload">
+            <i class="layui-icon" style="font-size: 20px; "></i> 搜索
+        </button>
+    </div>
+</form>
 
 
 <table class="layui-hide" id="demo" lay-filter="test"></table>
@@ -126,6 +72,7 @@
         table.render({
             elem: '#demo'
             , url: '/EquipmentLogList.arr' //数据接口
+            , id: 'userTables'    // 表格ID
             , title: '日志信息'
             , page: true //开启分页
             , toolbar: 'default' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
@@ -135,12 +82,35 @@
                     , {field: 'id', title: '编号', fixed: 'left', align: 'center'}
                     , {field: 'deviceId', title: '设备ID', align: 'center'}
                     , {field: 'time', title: '写入时间', align: 'center'}
-                    , {field: 'typeName', title: '设备类型', align: 'center'}
+                    , {field: 'typeName', title: '物联网类型', align: 'center'}
                     , {field: 'businessName', title: '商家', align: 'center'}
                     // , {fixed: 'right', title: '操作', align: 'center', toolbar: '#barDemo'}
                 ]
             ]
         });
+
+        //搜索加载--数据表格重载
+        var $ = layui.$, active = {
+            reload: function () {
+                //执行重载
+                var searContent = $('#searContent').val();
+                table.reload('userTables', {
+                    page: {
+                        curr: 1 //重新从第 1 页开始
+                    }
+                    , where: {
+                        searContent: searContent
+                    }
+                });
+            }
+        };
+
+
+        $('#searchEmailCompany').on('click', function () {
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
+        });
+
 
         //监听头工具栏事件
         table.on('toolbar(test)', function (obj) {
@@ -198,26 +168,26 @@
             }
         });
 
-        var $ = layui.$, active = {
-            //注释：layui 搜索模块 Start
-            reload: function () {
-                var FlowNumber = $('#FlowNumber').val();
-                var UserName = $('#UserName').val();
-                var Topic = $('#Topic').val();
-                var Time = $('#Time').val();
-                table.reload('testReload', {
-                    page: {
-                        curr: 1
-                    }
-                    , where: {
-                        FlowNumber: FlowNumber
-                        , UserName: UserName
-                        , Topic: Topic
-                        , Time: Time
-                    }
-                });
-            }
-        }
+        // var $ = layui.$, active = {
+        //     //注释：layui 搜索模块 Start
+        //     reload: function () {
+        //         var FlowNumber = $('#FlowNumber').val();
+        //         var UserName = $('#UserName').val();
+        //         var Topic = $('#Topic').val();
+        //         var Time = $('#Time').val();
+        //         table.reload('testReload', {
+        //             page: {
+        //                 curr: 1
+        //             }
+        //             , where: {
+        //                 FlowNumber: FlowNumber
+        //                 , UserName: UserName
+        //                 , Topic: Topic
+        //                 , Time: Time
+        //             }
+        //         });
+        //     }
+        // }
 
         //分页
         laypage.render({
