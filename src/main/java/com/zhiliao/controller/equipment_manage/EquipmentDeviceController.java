@@ -38,7 +38,7 @@ public class EquipmentDeviceController {
         Map<String, Object> map = new HashMap<String, Object>();
 
         PageHelper.startPage(Integer.valueOf(request.getParameter("page")), Integer.valueOf(request.getParameter("limit")));
-        List<WlyyDevice> EquipmentDeviceList = equipmentDeviceService.selectByExample();
+        List<WlyyDevice> EquipmentDeviceList = equipmentDeviceService.selectAllList();
         PageInfo<WlyyDevice> pageInfo = new PageInfo<>(EquipmentDeviceList);
 
         map.put("code", 0);

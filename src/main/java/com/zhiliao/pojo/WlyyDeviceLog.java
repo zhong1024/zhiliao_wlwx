@@ -21,9 +21,9 @@ public class WlyyDeviceLog {
     private Integer addTime;
     //  显示时间
     private String time;
-    //  物联网类型
+    //  设备类型ID
     private Integer typeId;
-    //  显示物联网类型
+    //  设备类型显示
     private String typeName;
     //  商家ID
     private Integer businessId;
@@ -95,27 +95,5 @@ public class WlyyDeviceLog {
     public void setBusinessName(String businessName) {
         this.businessName = businessName;
     }
-
-    //    public String getTypeName() throws Exception{
-//        System.out.println("typeId:"+typeId);
-//        if(typeId!=0){
-//            MerchantsManageService merchantsManageService = new MerchantsManageService();
-//            typeName = merchantsManageService.selectByPrimaryKey(typeId).getName();
-//        }
-//        System.out.println("typeName:"+typeName);
-//        return typeName;
-//    }
-
-//    public String getBusinessName() throws Exception{
-//        System.out.println("businessId:"+businessId);
-//        if(businessId!=0){
-//            EquipmentTypeService equipmentTypeService = new EquipmentTypeService();
-//            System.out.println(equipmentTypeService.selectByPrimaryKey(businessId).getBusinessName());
-//            businessName = equipmentTypeService.selectByPrimaryKey(businessId).getBusinessName();
-//        }else
-//            businessName = null;
-//        System.out.println("businessName:"+businessName);
-//        return businessName;
-//    }
 
 }

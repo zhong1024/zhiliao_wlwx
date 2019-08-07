@@ -37,34 +37,25 @@ public class EquipmentLogController {
 
 
     @RequestMapping("ToEquipmentLogList")
-    public String ToEquipmentLogList(){
+    public String ToEquipmentLogList() {
         return "/equipment_manage/EquipmentLogList";
     }
 
 
+    /**
+     * 多表关联查询出所有结果集
+     *
+     * @param request
+     * @return
+     * @throws Exception
+     */
     @RequestMapping("EquipmentLogList")
     @ResponseBody
-    public Map<String, Object> EquipmentLogList(HttpServletRequest request) throws Exception{
+    public Map<String, Object> EquipmentLogList(HttpServletRequest request) throws Exception {
         Map<String, Object> map = new HashMap<String, Object>();
 
         PageHelper.startPage(Integer.valueOf(request.getParameter("page")), Integer.valueOf(request.getParameter("limit")));
-        List<WlyyDeviceLog> EquipmentLogList = equipmentLogService.selectByExample();
-        
-//        List<WlyyDeviceType> wlyyDeviceTypeList = merchantsManageService.selectByExample(); //物联网类型
-//        String[] wlyyDeviceTypeListARR = new String[wlyyDeviceTypeList.size()];
-//        for(int i = 0;i<wlyyDeviceTypeList.size();i++){
-//            wlyyDeviceTypeListARR[wlyyDeviceTypeList.get(i).getId()] = wlyyDeviceTypeList.get(i).getName();
-//        }
-//        List<WlyyBusiness> wlyyBusinessList = equipmentTypeService.selectByExample();   //商家
-//        String[] wlyyBusinessListARR = new String[wlyyBusinessList.size()];
-//        for(int i = 0;i<wlyyBusinessList.size();i++){
-//            wlyyBusinessListARR[wlyyBusinessList.get(i).getId()] = wlyyBusinessList.get(i).getBusinessName();
-//        }
-//        for(int i = 0;i<EquipmentLogList.size();i++){
-//            EquipmentLogList.get(i).setTypeName(wlyyDeviceTypeListARR[EquipmentLogList.get(i).getTypeId()]);
-//            EquipmentLogList.get(i).setBusinessName(wlyyBusinessListARR[EquipmentLogList.get(i).getBusinessId()]);
-//        }
-//        System.out.println(EquipmentLogList.get(0).getBusinessName());
+        List<WlyyDeviceLog> EquipmentLogList = equipmentLogService.selectAllList();
         PageInfo<WlyyDeviceLog> pageInfo = new PageInfo<>(EquipmentLogList);
 
         map.put("code", 0);
@@ -72,7 +63,6 @@ public class EquipmentLogController {
         map.put("count", pageInfo.getTotal());  //总记录数
         map.put("data", pageInfo.getList());    //结果集
         return map;
-
     }
 
 

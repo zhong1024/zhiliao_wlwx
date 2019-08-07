@@ -36,4 +36,6 @@ public interface WlyyDeviceLogMapper {
 
     //  根据ID修改在线状态
     int updateTypeKey(WlyyDeviceLog record);
+    //  多表关联查询出结果集
+    List<WlyyDeviceLog> selectAllList();
 }

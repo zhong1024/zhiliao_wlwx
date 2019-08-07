@@ -32,4 +32,8 @@ public interface WlyyDeviceMapper {
     int updateByPrimaryKeySelective(WlyyDevice record);
 
     int updateByPrimaryKey(WlyyDevice record);
+
+    //  多表关联查询出结果集
+    List<WlyyDevice> selectAllList();
+
 }

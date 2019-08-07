@@ -4,11 +4,13 @@
   <resultMap id="BaseResultMap" type="com.zhiliao.pojo.WlyyDevice" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="type_id" property="typeId" jdbcType="INTEGER" />
+    <result column="name" property="typeName" jdbcType="VARCHAR" />
     <result column="ip" property="ip" jdbcType="VARCHAR" />
     <result column="port" property="port" jdbcType="INTEGER" />
     <result column="status" property="status" jdbcType="BIT" />
     <result column="add_time" property="addTime" jdbcType="INTEGER" />
     <result column="business_id" property="businessId" jdbcType="INTEGER" />
+    <result column="business_name" property="businessName" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -71,6 +73,11 @@
   <sql id="Base_Column_List" >
     id, type_id, ip, port, status, add_time, business_id
   </sql>
+
+  <select id="selectAllList" resultMap="BaseResultMap">
+     select wlyy_device.`id`,wlyy_device.`type_id`,`name`,ip,`port`,`status`,add_time,wlyy_device.`business_id`,business_name from wlyy_device,wlyy_device_type,wlyy_business where wlyy_device.`type_id`=wlyy_device_type.`id` and wlyy_device.`business_id`=wlyy_business.`id`
+  </select>
+
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zhiliao.pojo.WlyyDeviceExample" >
     select
     <if test="distinct" >

@@ -10,6 +10,7 @@ import io.netty.handler.timeout.IdleStateEvent;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.zhiliao.util.Hex22String.arr2Str;
 import static com.zhiliao.util.Hex22String.hexItr2Arr;
 
 
@@ -63,12 +64,11 @@ public class Middleware extends ChannelInboundHandlerAdapter {
         // 然后将字节数组转为字符串
         buf.readBytes(reg);
 
-        String be = bytesToHexString(reg);
+        String be = arr2Str(reg,"UTF-8");
         System.out.println(be);
 
         String body = new String(reg, "UTF-8");
         System.out.println(body);
-//        System.out.println(Thread.currentThread().getName() + "Client : " + body);
 
         //回复消息
         //copiedBuffer：创建一个新的缓冲区，内容为里面的参数
@@ -82,7 +82,7 @@ public class Middleware extends ChannelInboundHandlerAdapter {
             ctx.writeAndFlush(respByteBuf);
         }
         if ("3134373936373037373130".equals(be)) {
-            System.out.println("--" + true);
+            System.out.println("sleep:2000");
             Thread.sleep(2000);
         }
 
@@ -90,22 +90,6 @@ public class Middleware extends ChannelInboundHandlerAdapter {
 
 
 
-    public static String bytesToHexString(byte[] be) {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < be.length; i++) {
-            String hex = Integer.toHexString(0xFF & be[i]);
-            if (hex.length() == 1) {
-                sb.append('0');
-            }
-            sb.append(hex );
-        }
-        return sb.toString().toUpperCase();
-    }
-
-
-
-
-//    protected abstract void handlerData(ChannelHandlerContext ctx,Object msg);
 
     //  获取数据正在打印
     protected void handlerData(ChannelHandlerContext ctx, Object msg) {
