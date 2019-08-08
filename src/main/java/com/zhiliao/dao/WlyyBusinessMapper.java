@@ -33,4 +33,6 @@ public interface WlyyBusinessMapper {
     int updateByPrimaryKeySelective(WlyyBusiness record);
 
     int updateByPrimaryKey(WlyyBusiness record);
+
+    int updateKeyfield(WlyyBusiness record);
 }

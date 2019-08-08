@@ -22,17 +22,13 @@
 <body>
 
 
-<form class="layui-form">
-    <div class="layui-input-inline">
-        <input type="tel" name="searContent" id="searContent" autocomplete="off"
-               placeholder="物联网类型/商家" class="layui-input">
+<div class="demoTable">
+    物联网类型/商家：
+    <div class="layui-inline">
+        <input class="layui-input" name="id" id="demoReload" autocomplete="off">
     </div>
-    <div class="layui-input-inline " style="width: 90px">
-        <button class="layui-btn" id="searchEmailCompany" data-type="reload">
-            <i class="layui-icon" style="font-size: 20px; "></i> 搜索
-        </button>
-    </div>
-</form>
+    <button class="layui-btn" data-type="reload">搜索</button>
+</div>
 
 
 <table class="layui-hide" id="demo" lay-filter="test"></table>
@@ -72,7 +68,7 @@
         table.render({
             elem: '#demo'
             , url: '/EquipmentLogList.arr' //数据接口
-            , id: 'userTables'    // 表格ID
+            , id: 'testReload'    // 表格ID
             , title: '日志信息'
             , page: true //开启分页
             , toolbar: 'default' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
@@ -89,27 +85,27 @@
             ]
         });
 
-        //搜索加载--数据表格重载
         var $ = layui.$, active = {
-            reload: function () {
+            reload: function(){
+                var demoReload = $('#demoReload');
+
                 //执行重载
-                var searContent = $('#searContent').val();
-                table.reload('userTables', {
+                table.reload('testReload', {
                     page: {
                         curr: 1 //重新从第 1 页开始
                     }
-                    , where: {
-                        searContent: searContent
+                    ,where: {
+                            searContent: demoReload.val()
                     }
-                });
+                }, 'data');
             }
         };
 
-
-        $('#searchEmailCompany').on('click', function () {
+        $('.demoTable .layui-btn').on('click', function(){
             var type = $(this).data('type');
             active[type] ? active[type].call(this) : '';
         });
+
 
 
         //监听头工具栏事件
@@ -120,22 +116,22 @@
                 case 'add':
                     layer.msg('添加');
                     break;
-                case 'update':
-                    if (data.length === 0) {
-                        layer.msg('请选择一行');
-                    } else if (data.length > 1) {
-                        layer.msg('只能同时编辑一个');
-                    } else {
-                        layer.alert('编辑 [id]：' + checkStatus.data[0].id);
-                    }
-                    break;
-                case 'delete':
-                    if (data.length === 0) {
-                        layer.msg('请选择一行');
-                    } else {
-                        layer.msg('删除');
-                    }
-                    break;
+                // case 'update':
+                //     if (data.length === 0) {
+                //         layer.msg('请选择一行');
+                //     } else if (data.length > 1) {
+                //         layer.msg('只能同时编辑一个');
+                //     } else {
+                //         layer.alert('编辑 [id]：' + checkStatus.data[0].id);
+                //     }
+                //     break;
+                // case 'delete':
+                //     if (data.length === 0) {
+                //         layer.msg('请选择一行');
+                //     } else {
+                //         layer.msg('删除');
+                //     }
+                //     break;
             }
             ;
         });

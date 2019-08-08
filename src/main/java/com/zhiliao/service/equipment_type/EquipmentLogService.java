@@ -48,9 +48,20 @@ public class EquipmentLogService {
      * @return
      * @throws Exception
      */
-    public List<WlyyDeviceLog> selectAllList(String searContent) throws Exception {
-        System.out.println(searContent);
-        return wlyyDeviceLogMapper.selectAllList(searContent);
+    public List<WlyyDeviceLog> selectAllList() throws Exception {
+        return wlyyDeviceLogMapper.selectAllList();
+    }
+
+
+    /**
+     * 条件多表关联查询出结果集
+     *
+     * @param searContent
+     * @return
+     * @throws Exception
+     */
+    public List<WlyyDeviceLog> selectAllListKey(String searContent) throws Exception {
+        return wlyyDeviceLogMapper.selectAllListKey(searContent);
     }
 
 }

@@ -25,8 +25,8 @@
 
 <script type="text/html" id="barDemo">
     <!--<a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>-->
-    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+    <!--<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>-->
+    <!--<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>-->
 </script>
 
 
@@ -76,22 +76,22 @@
                 case 'add':
                     layer.msg('添加');
                     break;
-                case 'update':
-                    if (data.length === 0) {
-                        layer.msg('请选择一行');
-                    } else if (data.length > 1) {
-                        layer.msg('只能同时编辑一个');
-                    } else {
-                        layer.alert('编辑 [id]：' + checkStatus.data[0].id);
-                    }
-                    break;
-                case 'delete':
-                    if (data.length === 0) {
-                        layer.msg('请选择一行');
-                    } else {
-                        layer.msg('删除');
-                    }
-                    break;
+                // case 'update':
+                //     if (data.length === 0) {
+                //         layer.msg('请选择一行');
+                //     } else if (data.length > 1) {
+                //         layer.msg('只能同时编辑一个');
+                //     } else {
+                //         layer.alert('编辑 [id]：' + checkStatus.data[0].id);
+                //     }
+                //     break;
+                // case 'delete':
+                //     if (data.length === 0) {
+                //         layer.msg('请选择一行');
+                //     } else {
+                //         layer.msg('删除');
+                //     }
+                //     break;
             }
             ;
         });

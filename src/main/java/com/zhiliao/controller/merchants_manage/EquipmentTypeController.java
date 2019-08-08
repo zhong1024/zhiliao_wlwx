@@ -30,7 +30,6 @@ public class EquipmentTypeController {
     EquipmentTypeService equipmentTypeService;
 
 
-
     /**
      * @return
      */
@@ -41,7 +40,6 @@ public class EquipmentTypeController {
 
 
     /**
-     *
      * @param id
      * @param model
      * @return
@@ -96,15 +94,23 @@ public class EquipmentTypeController {
     /**
      * 修改数据
      *
-     * @param wlyyBusiness
+     * @param id    键值
+     * @param field 得到字段
+     * @param value 修改后的值
      * @return
      */
     @RequestMapping("updateEquipmentTypeId")
     @ResponseBody
-    public Msg updateEquipmentTypeId(WlyyBusiness wlyyBusiness) {
-        equipmentTypeService.updateEquipmentTypeId(wlyyBusiness);
+    public Msg updateEquipmentTypeId(Integer id, String field, String value) {
+
+        WlyyBusiness wlyyBusiness = new WlyyBusiness();
+        wlyyBusiness.setId(id);
+        wlyyBusiness.setBusinessName(value);
+        equipmentTypeService.updateByPrimaryKeySelective(wlyyBusiness);
+
         return Msg.success();
     }
+
 
     /**
      * 根据ID删除某条数据
@@ -115,6 +121,7 @@ public class EquipmentTypeController {
     @RequestMapping("deleteEquipmentTypeId")
     @ResponseBody
     public Msg deleteEquipmentTypeId(Integer Id) {
+        System.out.println(Id);
         equipmentTypeService.deleteByPrimaryKey(Id);
         return Msg.success();
     }

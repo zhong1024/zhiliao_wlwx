@@ -40,5 +40,8 @@ public class EquipmentDeviceService {
         return wlyyDeviceMapper.selectAllList();
     }
 
+    public List<WlyyDevice> selectAllListKey(String searContent) throws Exception{
+        return wlyyDeviceMapper.selectAllListKey(searContent);
+    }
 
 }

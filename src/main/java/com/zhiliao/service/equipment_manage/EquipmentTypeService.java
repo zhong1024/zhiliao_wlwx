@@ -7,7 +7,9 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.List;
 
-/**商家信息管理Service实现类
+/**
+ * 商家信息管理Service实现类
+ *
  * @author Mr.Zhong
  * @create2019-07-30 8:54
  */
@@ -21,42 +23,44 @@ public class EquipmentTypeService {
 
     /**
      * 查询使用数据信息
+     *
      * @return
      * @throws Exception
      */
-    public List<WlyyBusiness> selectByExample() throws Exception{
+    public List<WlyyBusiness> selectByExample() throws Exception {
         return wlyyBusinessMapper.selectByExample(null);
     }
 
     /**
      * 根据id查询某条数据信息
+     *
      * @param id
      * @return
      * @throws Exception
      */
-    public WlyyBusiness selectByPrimaryKey(Integer id) throws Exception{
+    public WlyyBusiness selectByPrimaryKey(Integer id) throws Exception {
         return wlyyBusinessMapper.selectByPrimaryKey(id);
     }
 
     /**
      * 修改某条信息
+     *
      * @param wlyyBusiness
      */
-    public int updateEquipmentTypeId(WlyyBusiness wlyyBusiness){
-        return wlyyBusinessMapper.updateByPrimaryKey(wlyyBusiness);
+    public int updateByPrimaryKeySelective(WlyyBusiness wlyyBusiness) {
+        return wlyyBusinessMapper.updateByPrimaryKeySelective(wlyyBusiness);
     }
 
 
     /**
      * 根据ID删除某条数据
-      * @param id
+     *
+     * @param id
      * @return
      */
-    public int deleteByPrimaryKey(Integer id){
+    public int deleteByPrimaryKey(Integer id) {
         return wlyyBusinessMapper.deleteByPrimaryKey(id);
     }
-
-
 
 
 }

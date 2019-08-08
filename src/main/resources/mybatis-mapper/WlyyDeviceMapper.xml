@@ -1,114 +1,132 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.zhiliao.dao.WlyyDeviceMapper" >
-  <resultMap id="BaseResultMap" type="com.zhiliao.pojo.WlyyDevice" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="type_id" property="typeId" jdbcType="INTEGER" />
-    <result column="name" property="typeName" jdbcType="VARCHAR" />
-    <result column="ip" property="ip" jdbcType="VARCHAR" />
-    <result column="port" property="port" jdbcType="INTEGER" />
-    <result column="status" property="status" jdbcType="BIT" />
-    <result column="add_time" property="addTime" jdbcType="INTEGER" />
-    <result column="business_id" property="businessId" jdbcType="INTEGER" />
-    <result column="business_name" property="businessName" jdbcType="VARCHAR" />
-  </resultMap>
-  <sql id="Example_Where_Clause" >
-    <where >
-      <foreach collection="oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
+<mapper namespace="com.zhiliao.dao.WlyyDeviceMapper">
+    <resultMap id="BaseResultMap" type="com.zhiliao.pojo.WlyyDevice">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="type_id" property="typeId" jdbcType="INTEGER"/>
+        <result column="name" property="typeName" jdbcType="VARCHAR"/>
+        <result column="ip" property="ip" jdbcType="VARCHAR"/>
+        <result column="port" property="port" jdbcType="INTEGER"/>
+        <result column="status" property="status" jdbcType="BIT"/>
+        <result column="add_time" property="addTime" jdbcType="INTEGER"/>
+        <result column="business_id" property="businessId" jdbcType="INTEGER"/>
+        <result column="business_name" property="businessName" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
             </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause" >
-    <where >
-      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
             </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Base_Column_List" >
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
     id, type_id, ip, port, status, add_time, business_id
   </sql>
 
-  <select id="selectAllList" resultMap="BaseResultMap">
-     select wlyy_device.`id`,wlyy_device.`type_id`,`name`,ip,`port`,`status`,add_time,wlyy_device.`business_id`,business_name from wlyy_device,wlyy_device_type,wlyy_business where wlyy_device.`type_id`=wlyy_device_type.`id` and wlyy_device.`business_id`=wlyy_business.`id`
-  </select>
+    <sql id="ArrLists">
+    wlyy_device.`id`,wlyy_device.`type_id`,`name`,ip,`port`,`status`,add_time,wlyy_device.`business_id`,business_name
+    from wlyy_device,wlyy_device_type,wlyy_business
+    where wlyy_device.`type_id`=wlyy_device_type.`id`
+    and wlyy_device.`business_id`=wlyy_business.`id`
+  </sql>
+    <select id="selectAllList" resultMap="BaseResultMap">
+        select
+        <include refid="ArrLists"/>
+    </select>
 
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zhiliao.pojo.WlyyDeviceExample" >
-    select
-    <if test="distinct" >
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from wlyy_device
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null" >
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from wlyy_device
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    <select id="selectAllListKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="ArrLists"/>
+        and (
+        (`name` like CONCAT(CONCAT("%",#{searContent}),"%"))
+        or (business_name like CONCAT(CONCAT("%",#{searContent}),"%"))
+        )
+    </select>
+
+    <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zhiliao.pojo.WlyyDeviceExample">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from wlyy_device
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from wlyy_device
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from wlyy_device
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.zhiliao.pojo.WlyyDeviceExample" >
-    delete from wlyy_device
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="com.zhiliao.pojo.WlyyDevice" >
+    <delete id="deleteByExample" parameterType="com.zhiliao.pojo.WlyyDeviceExample">
+        delete from wlyy_device
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.zhiliao.pojo.WlyyDevice">
     insert into wlyy_device (id, type_id, ip, 
       port, status, add_time, 
       business_id)
@@ -116,128 +134,128 @@
       #{port,jdbcType=INTEGER}, #{status,jdbcType=BIT}, #{addTime,jdbcType=INTEGER}, 
       #{businessId,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.zhiliao.pojo.WlyyDevice" >
-    insert into wlyy_device
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
-      <if test="typeId != null" >
-        type_id,
-      </if>
-      <if test="ip != null" >
-        ip,
-      </if>
-      <if test="port != null" >
-        port,
-      </if>
-      <if test="status != null" >
-        status,
-      </if>
-      <if test="addTime != null" >
-        add_time,
-      </if>
-      <if test="businessId != null" >
-        business_id,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="typeId != null" >
-        #{typeId,jdbcType=INTEGER},
-      </if>
-      <if test="ip != null" >
-        #{ip,jdbcType=VARCHAR},
-      </if>
-      <if test="port != null" >
-        #{port,jdbcType=INTEGER},
-      </if>
-      <if test="status != null" >
-        #{status,jdbcType=BIT},
-      </if>
-      <if test="addTime != null" >
-        #{addTime,jdbcType=INTEGER},
-      </if>
-      <if test="businessId != null" >
-        #{businessId,jdbcType=INTEGER},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByExample" parameterType="com.zhiliao.pojo.WlyyDeviceExample" resultType="java.lang.Integer" >
-    select count(*) from wlyy_device
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map" >
-    update wlyy_device
-    <set >
-      <if test="record.id != null" >
-        id = #{record.id,jdbcType=INTEGER},
-      </if>
-      <if test="record.typeId != null" >
+    <insert id="insertSelective" parameterType="com.zhiliao.pojo.WlyyDevice">
+        insert into wlyy_device
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="typeId != null">
+                type_id,
+            </if>
+            <if test="ip != null">
+                ip,
+            </if>
+            <if test="port != null">
+                port,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="addTime != null">
+                add_time,
+            </if>
+            <if test="businessId != null">
+                business_id,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="typeId != null">
+                #{typeId,jdbcType=INTEGER},
+            </if>
+            <if test="ip != null">
+                #{ip,jdbcType=VARCHAR},
+            </if>
+            <if test="port != null">
+                #{port,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=BIT},
+            </if>
+            <if test="addTime != null">
+                #{addTime,jdbcType=INTEGER},
+            </if>
+            <if test="businessId != null">
+                #{businessId,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.zhiliao.pojo.WlyyDeviceExample" resultType="java.lang.Integer">
+        select count(*) from wlyy_device
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update wlyy_device
+        <set>
+            <if test="record.id != null">
+                id = #{record.id,jdbcType=INTEGER},
+            </if>
+            <if test="record.typeId != null">
+                type_id = #{record.typeId,jdbcType=INTEGER},
+            </if>
+            <if test="record.ip != null">
+                ip = #{record.ip,jdbcType=VARCHAR},
+            </if>
+            <if test="record.port != null">
+                port = #{record.port,jdbcType=INTEGER},
+            </if>
+            <if test="record.status != null">
+                status = #{record.status,jdbcType=BIT},
+            </if>
+            <if test="record.addTime != null">
+                add_time = #{record.addTime,jdbcType=INTEGER},
+            </if>
+            <if test="record.businessId != null">
+                business_id = #{record.businessId,jdbcType=INTEGER},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update wlyy_device
+        set id = #{record.id,jdbcType=INTEGER},
         type_id = #{record.typeId,jdbcType=INTEGER},
-      </if>
-      <if test="record.ip != null" >
         ip = #{record.ip,jdbcType=VARCHAR},
-      </if>
-      <if test="record.port != null" >
         port = #{record.port,jdbcType=INTEGER},
-      </if>
-      <if test="record.status != null" >
         status = #{record.status,jdbcType=BIT},
-      </if>
-      <if test="record.addTime != null" >
         add_time = #{record.addTime,jdbcType=INTEGER},
-      </if>
-      <if test="record.businessId != null" >
-        business_id = #{record.businessId,jdbcType=INTEGER},
-      </if>
-    </set>
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map" >
-    update wlyy_device
-    set id = #{record.id,jdbcType=INTEGER},
-      type_id = #{record.typeId,jdbcType=INTEGER},
-      ip = #{record.ip,jdbcType=VARCHAR},
-      port = #{record.port,jdbcType=INTEGER},
-      status = #{record.status,jdbcType=BIT},
-      add_time = #{record.addTime,jdbcType=INTEGER},
-      business_id = #{record.businessId,jdbcType=INTEGER}
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zhiliao.pojo.WlyyDevice" >
-    update wlyy_device
-    <set >
-      <if test="typeId != null" >
-        type_id = #{typeId,jdbcType=INTEGER},
-      </if>
-      <if test="ip != null" >
-        ip = #{ip,jdbcType=VARCHAR},
-      </if>
-      <if test="port != null" >
-        port = #{port,jdbcType=INTEGER},
-      </if>
-      <if test="status != null" >
-        status = #{status,jdbcType=BIT},
-      </if>
-      <if test="addTime != null" >
-        add_time = #{addTime,jdbcType=INTEGER},
-      </if>
-      <if test="businessId != null" >
-        business_id = #{businessId,jdbcType=INTEGER},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.zhiliao.pojo.WlyyDevice" >
+        business_id = #{record.businessId,jdbcType=INTEGER}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.zhiliao.pojo.WlyyDevice">
+        update wlyy_device
+        <set>
+            <if test="typeId != null">
+                type_id = #{typeId,jdbcType=INTEGER},
+            </if>
+            <if test="ip != null">
+                ip = #{ip,jdbcType=VARCHAR},
+            </if>
+            <if test="port != null">
+                port = #{port,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=BIT},
+            </if>
+            <if test="addTime != null">
+                add_time = #{addTime,jdbcType=INTEGER},
+            </if>
+            <if test="businessId != null">
+                business_id = #{businessId,jdbcType=INTEGER},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.zhiliao.pojo.WlyyDevice">
     update wlyy_device
     set type_id = #{typeId,jdbcType=INTEGER},
       ip = #{ip,jdbcType=VARCHAR},

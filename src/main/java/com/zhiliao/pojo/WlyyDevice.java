@@ -33,6 +33,8 @@ public class WlyyDevice {
     private Integer businessId;
     //  商家显示
     private String businessName;
+    //  多条件查询条件
+    private String searContent;
 
     public Integer getId() {
         return id;
@@ -104,6 +106,14 @@ public class WlyyDevice {
 
     public void setBusinessName(String businessName) {
         this.businessName = businessName;
+    }
+
+    public String getSearContent() {
+        return searContent;
+    }
+
+    public void setSearContent(String searContent) {
+        this.searContent = searContent;
     }
 
     public String getTypeStatus() {

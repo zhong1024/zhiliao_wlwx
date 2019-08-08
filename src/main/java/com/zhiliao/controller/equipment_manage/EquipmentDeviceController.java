@@ -34,11 +34,16 @@ public class EquipmentDeviceController {
 
     @RequestMapping("EquipmentDeviceList")
     @ResponseBody
-    public Map<String, Object> EquipmentDeviceList(HttpServletRequest request) throws Exception{
+    public Map<String, Object> EquipmentDeviceList(String searContent, Integer page, Integer limit) throws Exception{
         Map<String, Object> map = new HashMap<String, Object>();
 
-        PageHelper.startPage(Integer.valueOf(request.getParameter("page")), Integer.valueOf(request.getParameter("limit")));
-        List<WlyyDevice> EquipmentDeviceList = equipmentDeviceService.selectAllList();
+        List<WlyyDevice> EquipmentDeviceList;
+        PageHelper.startPage(page, limit);
+        if("".equals(searContent) || searContent==null) {
+            EquipmentDeviceList = equipmentDeviceService.selectAllList();
+        }else{
+            EquipmentDeviceList = equipmentDeviceService.selectAllListKey(searContent);
+        }
         PageInfo<WlyyDevice> pageInfo = new PageInfo<>(EquipmentDeviceList);
 
         map.put("code", 0);

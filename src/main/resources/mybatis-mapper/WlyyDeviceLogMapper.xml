@@ -73,18 +73,25 @@
     <sql id="Base_Column_List">
     id, device_id, add_time, type_id, business_id
   </sql>
-
-    <select id="selectAllList" resultMap="BaseResultMap" parameterType="java.lang.String">
-          select wlyy_device_log.`id`,device_id,add_time,wlyy_device_log.`type_id`,`name`,wlyy_device_log.`business_id`,business_name
+    <sql id="ArrLists">
+         wlyy_device_log.`id`,device_id,add_time,wlyy_device_log.`type_id`,`name`,wlyy_device_log.`business_id`,business_name
           from wlyy_device_log,wlyy_device_type,wlyy_business
           where wlyy_device_log.`type_id`=wlyy_device_type.`id`
           and wlyy_device_log.`business_id`=wlyy_business.`id`
-          <if test="searContent!=null">
-          and (
-              (`name` like CONCAT(CONCAT("%",#{searContent}),"%"))
-          or (business_name like CONCAT(CONCAT("%",#{searContent}),"%"))
-                )
-          </if>
+    </sql>
+
+    <select id="selectAllList" resultMap="BaseResultMap" parameterType="java.lang.String">
+          select
+          <include refid="ArrLists"/>
+    </select>
+
+    <select id="selectAllListKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="ArrLists"/>
+        and (
+        (`name` like CONCAT(CONCAT("%",#{searContent}),"%"))
+        or (business_name like CONCAT(CONCAT("%",#{searContent}),"%"))
+        )
     </select>
 
     <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zhiliao.pojo.WlyyDeviceLogExample">

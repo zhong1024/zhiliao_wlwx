@@ -2,7 +2,9 @@ package com.zhiliao.dao;
 
 import com.zhiliao.pojo.WlyyDevice;
 import com.zhiliao.pojo.WlyyDeviceExample;
+
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 /**
@@ -35,5 +37,8 @@ public interface WlyyDeviceMapper {
 
     //  多表关联查询出结果集
     List<WlyyDevice> selectAllList();
+
+    //  条件多表关联查询出结果集
+    List<WlyyDevice> selectAllListKey(String searContent);
 
 }
