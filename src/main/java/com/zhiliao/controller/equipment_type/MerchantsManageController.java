@@ -16,6 +16,7 @@ import java.util.Map;
 
 /**
  * 物联网类型信息表
+ *
  * @author Mr.Zhong
  * @create2019-07-30 9:37
  */
@@ -27,23 +28,23 @@ public class MerchantsManageController {
     MerchantsManageService merchantsManageService;
 
     /**
-     *
      * @return
      */
     @RequestMapping("ToMerchantsManageList")
-    public String ToMerchantsManageList(){
+    public String ToMerchantsManageList() {
         return "/equipment_type/MerchantsManageList";
     }
 
     /**
-     *  查询所有记录数
+     * 查询所有记录数
+     *
      * @param request
      * @return
      * @throws Exception
      */
     @RequestMapping("MerchantsManageList")
     @ResponseBody
-    public Map<String, Object> MerchantsManageList(HttpServletRequest request) throws Exception{
+    public Map<String, Object> MerchantsManageList(HttpServletRequest request) throws Exception {
         Map<String, Object> map = new HashMap<String, Object>();
 
         PageHelper.startPage(Integer.valueOf(request.getParameter("page")), Integer.valueOf(request.getParameter("limit")));
@@ -57,8 +58,5 @@ public class MerchantsManageController {
         return map;
 
     }
-
-
-
 
 }

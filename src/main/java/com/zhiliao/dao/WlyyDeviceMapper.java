@@ -8,11 +8,14 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 /**
+ * 设备类型dao接口
+ *
  * @author Mr.Zhong
  * @create2019-08-01 14:13
  */
 
 public interface WlyyDeviceMapper {
+
     int countByExample(WlyyDeviceExample example);
 
     int deleteByExample(WlyyDeviceExample example);

@@ -50,21 +50,36 @@ public class EquipmentTypeController {
         return "/merchants_manage/EquipmentTypeUpdate";
     }
 
+    /**
+     * 商家添加跳转
+     *
+     * @return
+     */
+    @RequestMapping("ToEquipmentTypeAdd")
+    public String EquipmentTypeAdd(){
+        return "/merchants_manage/EquipmentTypeAdd";
+    }
+
 
     /**
      * 查询所有记录数
      *
-     * @param request
+     * @param
      * @return
      * @throws Exception
      */
     @RequestMapping("EquipmentTypeList")
     @ResponseBody
-    public Map<String, Object> EquipmentTypeList(HttpServletRequest request) throws Exception {
+    public Map<String, Object> EquipmentTypeList(String searContent, Integer page, Integer limit) throws Exception {
         Map<String, Object> map = new HashMap<String, Object>();
 
-        PageHelper.startPage(Integer.valueOf(request.getParameter("page")), Integer.valueOf(request.getParameter("limit")));
-        List<WlyyBusiness> EquipmentTypeList = equipmentTypeService.selectByExample();
+        PageHelper.startPage(page, limit);
+        List<WlyyBusiness> EquipmentTypeList ;
+        if("".equals(searContent) || searContent == null){
+            EquipmentTypeList = equipmentTypeService.selectByExample();
+        }else{
+            EquipmentTypeList = equipmentTypeService.selectAllListKey(searContent);
+        }
         PageInfo<WlyyBusiness> pageInfo = new PageInfo<>(EquipmentTypeList);
 
         map.put("code", 0);
@@ -121,8 +136,20 @@ public class EquipmentTypeController {
     @RequestMapping("deleteEquipmentTypeId")
     @ResponseBody
     public Msg deleteEquipmentTypeId(Integer Id) {
-        System.out.println(Id);
         equipmentTypeService.deleteByPrimaryKey(Id);
+        return Msg.success();
+    }
+
+    /**
+     * 添加一条记录
+     *
+     * @param business_name
+     * @return
+     */
+    @RequestMapping("EquipmentTypeAdd")
+    @ResponseBody
+    public Msg EquipmentTypeAdd(String business_name) throws Exception{
+        equipmentTypeService.insert(business_name);
         return Msg.success();
     }
 

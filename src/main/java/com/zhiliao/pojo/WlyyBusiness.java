@@ -12,6 +12,8 @@ public class WlyyBusiness {
     private Integer id;
     //  商家名称
     private String businessName;
+    //  多条件查询条件
+    private String searContent;
 
     public Integer getId() {
         return id;
@@ -27,5 +29,13 @@ public class WlyyBusiness {
 
     public void setBusinessName(String businessName) {
         this.businessName = businessName == null ? null : businessName.trim();
+    }
+
+    public String getSearContent() {
+        return searContent;
+    }
+
+    public void setSearContent(String searContent) {
+        this.searContent = searContent;
     }
 }

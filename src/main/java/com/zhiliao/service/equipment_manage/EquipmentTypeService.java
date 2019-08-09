@@ -22,7 +22,7 @@ public class EquipmentTypeService {
 
 
     /**
-     * 查询使用数据信息
+     * 查询所有数据信息
      *
      * @return
      * @throws Exception
@@ -62,5 +62,28 @@ public class EquipmentTypeService {
         return wlyyBusinessMapper.deleteByPrimaryKey(id);
     }
 
+    /**
+     * 根据条件搜索信息
+     *
+     * @param searContent
+     * @return
+     * @throws Exception
+     */
+    public List<WlyyBusiness> selectAllListKey(String searContent) throws Exception {
+        return wlyyBusinessMapper.selectAllListKey(searContent);
+    }
+
+    /**
+     * 添加一条记录
+     *
+     * @param business_name
+     * @return
+     * @throws Exception
+     */
+    public int insert(String business_name) throws Exception {
+        WlyyBusiness wlyyBusiness = new WlyyBusiness();
+        wlyyBusiness.setBusinessName(business_name);
+        return wlyyBusinessMapper.insert(wlyyBusiness);
+    }
 
 }

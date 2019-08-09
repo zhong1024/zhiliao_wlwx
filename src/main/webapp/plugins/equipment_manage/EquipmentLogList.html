@@ -108,33 +108,33 @@
 
 
 
-        //监听头工具栏事件
-        table.on('toolbar(test)', function (obj) {
-            var checkStatus = table.checkStatus(obj.config.id)
-                , data = checkStatus.data; //获取选中的数据
-            switch (obj.event) {
-                case 'add':
-                    layer.msg('添加');
-                    break;
-                // case 'update':
-                //     if (data.length === 0) {
-                //         layer.msg('请选择一行');
-                //     } else if (data.length > 1) {
-                //         layer.msg('只能同时编辑一个');
-                //     } else {
-                //         layer.alert('编辑 [id]：' + checkStatus.data[0].id);
-                //     }
-                //     break;
-                // case 'delete':
-                //     if (data.length === 0) {
-                //         layer.msg('请选择一行');
-                //     } else {
-                //         layer.msg('删除');
-                //     }
-                //     break;
-            }
-            ;
-        });
+        // //监听头工具栏事件
+        // table.on('toolbar(test)', function (obj) {
+        //     var checkStatus = table.checkStatus(obj.config.id)
+        //         , data = checkStatus.data; //获取选中的数据
+        //     switch (obj.event) {
+        //         case 'add':
+        //             layer.msg('添加');
+        //             break;
+        //         case 'update':
+        //             if (data.length === 0) {
+        //                 layer.msg('请选择一行');
+        //             } else if (data.length > 1) {
+        //                 layer.msg('只能同时编辑一个');
+        //             } else {
+        //                 layer.alert('编辑 [id]：' + checkStatus.data[0].id);
+        //             }
+        //             break;
+        //         case 'delete':
+        //             if (data.length === 0) {
+        //                 layer.msg('请选择一行');
+        //             } else {
+        //                 layer.msg('删除');
+        //             }
+        //             break;
+        //     }
+        //     ;
+        // });
 
         //监听行工具事件
         table.on('tool(test)', function (obj) { //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
@@ -150,40 +150,20 @@
                     //向服务端发送删除指令
                 });
             } else if (layEvent === 'edit') {
-                layer.open({
-                    //layer提供了5种层类型。可传入的值有：0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
-                    type: 2,
-                    title: "员工显示/编辑",
-                    area: ['800px', '550px'],
-                    offset: ['50px', '100px'],
-                    content: "/ToEquipmentTypeUpdate.arr?id=" + id,
-                    success: function (layero, index) {
-
-                    }
-                })
+                // layer.open({
+                //     //layer提供了5种层类型。可传入的值有：0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
+                //     type: 2,
+                //     title: "员工显示/编辑",
+                //     area: ['800px', '550px'],
+                //     offset: ['50px', '100px'],
+                //     content: "/ToEquipmentTypeUpdate.arr?id=" + id,
+                //     success: function (layero, index) {
+                //
+                //     }
+                // })
             }
         });
 
-        // var $ = layui.$, active = {
-        //     //注释：layui 搜索模块 Start
-        //     reload: function () {
-        //         var FlowNumber = $('#FlowNumber').val();
-        //         var UserName = $('#UserName').val();
-        //         var Topic = $('#Topic').val();
-        //         var Time = $('#Time').val();
-        //         table.reload('testReload', {
-        //             page: {
-        //                 curr: 1
-        //             }
-        //             , where: {
-        //                 FlowNumber: FlowNumber
-        //                 , UserName: UserName
-        //                 , Topic: Topic
-        //                 , Time: Time
-        //             }
-        //         });
-        //     }
-        // }
 
         //分页
         laypage.render({

@@ -68,6 +68,11 @@
     <sql id="Base_Column_List">
     id, business_name
   </sql>
+
+    <select id="selectAllListKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+         SELECT <include refid="Base_Column_List"/> FROM wlyy_business WHERE (business_name like CONCAT(CONCAT("%",#{searContent}),"%"))
+    </select>
+
     <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zhiliao.pojo.WlyyBusinessExample">
         select
         <if test="distinct">

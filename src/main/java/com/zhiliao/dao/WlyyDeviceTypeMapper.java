@@ -2,15 +2,20 @@ package com.zhiliao.dao;
 
 import com.zhiliao.pojo.WlyyDeviceType;
 import com.zhiliao.pojo.WlyyDeviceTypeExample;
+
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 /**
+ * 物联网类型dao接口
+ *
  * @author Mr.Zhong
  * @create2019-08-01 14:13
  */
 
 public interface WlyyDeviceTypeMapper {
+
     int countByExample(WlyyDeviceTypeExample example);
 
     int deleteByExample(WlyyDeviceTypeExample example);

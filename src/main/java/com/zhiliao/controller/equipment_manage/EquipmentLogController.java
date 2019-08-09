@@ -36,7 +36,9 @@ public class EquipmentLogController {
     /**
      * 多表关联查询出所有结果集
      *
-     * @param
+     * @param searContent
+     * @param page
+     * @param limit
      * @return
      * @throws Exception
      */

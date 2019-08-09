@@ -13,7 +13,7 @@ public class DataControl {
     public static Map<String,String[]> cmds = new HashMap<>();
 
     static {
-        cmds.put("0xB1",new String[]{"0xB1","0x11","0xB5","0xXX"}); //  锁关紧
+        cmds.put("B1",new String[]{"B1","11","B5","XX"}); //  锁关紧
     }
 
 

@@ -50,6 +50,7 @@ public class EquipmentDeviceController {
         map.put("msg", "");
         map.put("count", pageInfo.getTotal());  //总记录数
         map.put("data", pageInfo.getList());    //结果集
+
         return map;
 
     }

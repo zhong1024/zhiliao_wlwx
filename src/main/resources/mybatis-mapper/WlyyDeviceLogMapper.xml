@@ -81,8 +81,8 @@
     </sql>
 
     <select id="selectAllList" resultMap="BaseResultMap" parameterType="java.lang.String">
-          select
-          <include refid="ArrLists"/>
+        select
+        <include refid="ArrLists"/>
     </select>
 
     <select id="selectAllListKey" resultMap="BaseResultMap" parameterType="java.lang.String">
