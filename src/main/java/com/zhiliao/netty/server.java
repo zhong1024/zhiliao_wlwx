@@ -26,7 +26,7 @@ public class server implements TypeData {
             serverBootstrap.group(bossGroup, workerGroup)
                     //指定通道channel的类型，由于是服务端，故而是NioServerSocketChannel
                     .channel(NioServerSocketChannel.class)
-                    .localAddress(8081)
+                    .localAddress(PORT)
                     .childHandler(new ChannelInitializer<Channel>() {
 
                         @Override
