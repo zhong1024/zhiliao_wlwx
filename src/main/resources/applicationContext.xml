@@ -61,6 +61,17 @@
 
 	</bean>
 
+	<!--&lt;!&ndash;1. 配置 SecurityManager&ndash;&gt;-->
+	<!--<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">-->
+		<!--<property name="authenticator" ref="authenticator"/>-->
+	<!--</bean>-->
+	<!--&lt;!&ndash; 认证器 &ndash;&gt;-->
+	<!--<bean id="authenticator" class="org.apache.shiro.authc.pam.ModularRealmAuthenticator">-->
+		<!--<property name="authenticationStrategy">-->
+			<!--<bean class="org.apache.shiro.authc.pam.AtLeastOneSuccessfulStrategy"></bean>-->
+		<!--</property>-->
+	<!--</bean>-->
+
 
 	<!-- 配置Spring的声明式事务管理 -->
 	<!-- 配置事务管理器 -->

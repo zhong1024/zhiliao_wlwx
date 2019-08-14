@@ -1,12 +1,12 @@
 /*
-* @Author: xuebingsi
+* @Author: Mr.Zhong
 * @Date:   2019-04-01 13:37:17
-* @Last Modified by:   zhibinm
+* @Last Modified by:
 * @Last Modified time: 2019-04-01 13:37:19
 */
 .login-bg{
     /*background: #eeeeee url() 0 0 no-repeat;*/
-     background:url(../images/bg.png) no-repeat center;
+     background:url(../images/312583.jpg) no-repeat center;
     background-size: cover;
     overflow: hidden;
 }
@@ -32,7 +32,7 @@
 .login .message {
     margin: 10px 0 0 -58px;
     padding: 18px 10px 18px 60px;
-    background: #189F92;
+    background: #222222;
     position: relative;
     color: #fff;
     font-size: 16px;
@@ -79,15 +79,17 @@
     vertical-align: middle;
     cursor: pointer;
     color: #ffffff;
-    background-color: #189F92;
+    background-color: #222222;
     border-radius: 3px;
     border: none;
     -webkit-appearance: none;
     outline:none;
     width:100%;
 }
+/*登陆框内背景设置*/
 .login hr {
-    background: #fff url() 0 0 no-repeat;
+    /*background: #fff url() 0 0 no-repeat;*/
+    background: #fff 0 0 no-repeat;
 }
 .login hr.hr15 {
     height: 15px;

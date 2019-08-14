@@ -34,4 +34,6 @@ public interface WlyyUserMapper {
     int updateByPrimaryKeySelective(WlyyUser record);
 
     int updateByPrimaryKey(WlyyUser record);
+
+    WlyyUser login(WlyyUser record);
 }

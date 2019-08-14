@@ -1,7 +1,11 @@
 package com.zhiliao.controller;
+
+import com.zhiliao.pojo.WlyyUser;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpSession;
 
 /**
  * 启动器
@@ -12,24 +16,45 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class IndexServer {
 
-    @RequestMapping("indexArr")
-    public String indexArr() throws Exception {
+    /**
+     * 跳转到登陆页面
+     *
+     * @return
+     */
+    @RequestMapping("ToindexArr")
+    public String indexArr() {
         return "/index1";
     }
 
+    /**
+     * 登陆后跳转
+     *
+     * @param session
+     * @return
+     * @throws Exception
+     */
     @RequestMapping("instance")
-    public String indexTo() {
-        return "/index";
+    public String indexTo(HttpSession session) throws Exception {
+        WlyyUser wlyyUser = (WlyyUser) session.getAttribute("user");
+        System.out.println("=" + wlyyUser);
+        if (wlyyUser != null)
+            return "/index";
+//        else return "redirect:/login.arr";
+        else return "/index1";
     }
 
-
+    /**
+     * 跳转到菜单首页
+     *
+     * @return
+     */
     @RequestMapping("welcome")
     public String login() {
         return "/welcome";
     }
 
     @RequestMapping("future")
-    public String future(){
+    public String future() {
         return "/future";
     }
 
