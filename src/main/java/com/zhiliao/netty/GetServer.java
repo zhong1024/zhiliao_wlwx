@@ -1,6 +1,7 @@
 package com.zhiliao.netty;
 
 
+import com.zhiliao.netty.servers.Server;
 
 /**
  * @author Mr.Zhong
@@ -8,7 +9,7 @@ package com.zhiliao.netty;
  */
 public class GetServer {
 
-    private static server servers;
+    private static Server servers;
 
     private static Initialize initialize;
 
@@ -23,9 +24,9 @@ public class GetServer {
         return getServer;
     }
 
-    public static synchronized server getInstance(){
+    public static synchronized Server getInstance(){
         if(servers == null){
-            servers = new server();
+            servers = new Server();
         }
         return servers;
     }

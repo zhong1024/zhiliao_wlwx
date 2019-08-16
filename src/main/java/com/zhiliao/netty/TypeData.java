@@ -9,15 +9,11 @@ package com.zhiliao.netty;
  */
 public interface TypeData {
 
-    byte PING = 1;
-
-    byte PONG = 2;
-    //顾客
-    byte CUSTOMER = 3;
 
     //  超过时间未接收到客户端信息（秒）
     byte XTARR = 60;
     //  端口号
     int PORT = 8081;
+
 
 }

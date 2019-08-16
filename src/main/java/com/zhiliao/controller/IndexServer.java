@@ -36,7 +36,6 @@ public class IndexServer {
     @RequestMapping("instance")
     public String indexTo(HttpSession session) throws Exception {
         WlyyUser wlyyUser = (WlyyUser) session.getAttribute("user");
-        System.out.println("=" + wlyyUser);
         if (wlyyUser != null)
             return "/index";
 //        else return "redirect:/login.arr";

@@ -51,9 +51,9 @@
                     data: {"name": user.username,"password":user.password},
                     success: function (Msg) {
                         if(Msg.user!=null){
-                            location.href='/ToindexArr.arr';
+                            location.href='/instance.arr';
                         }else{
-                            alert("用户名密码错误！");
+                            layer.msg('用户名密码错误！');
                         }
                     }
                 })

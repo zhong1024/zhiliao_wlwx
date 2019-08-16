@@ -1,13 +1,16 @@
-package com.zhiliao.netty;
+package com.zhiliao.netty.mode;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * 持久化数据层
+ *
  * @author Mr.Zhong
- * @create2019-08-05 9:09
+ * @create2019-08-16 9:47
  */
-public class Services {
+public class Model {
+
 
     public static Map<String, Object[]> cmds = new HashMap<>();
     static{
@@ -19,21 +22,6 @@ public class Services {
         }catch (Exception e){
             e.printStackTrace();
         }
-    }
-
-
-    public String switchs(String data) {
-
-        switch (data) {
-            case "1":
-                ;
-                break;
-            case "2":
-                ;
-                break;
-        }
-
-        return data;
     }
 
 
