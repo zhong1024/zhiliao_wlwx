@@ -1,7 +1,7 @@
 package com.zhiliao.netty.controller;
 
 /**
- * 控制中心
+ * 控制器
  *
  * @author Mr.Zhong
  * @create2019-08-16 9:44

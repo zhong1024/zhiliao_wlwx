@@ -39,16 +39,16 @@ public class EquipmentTypeController {
     }
 
 
-    /**
-     * @param id
-     * @param model
-     * @return
-     */
-    @RequestMapping("ToEquipmentTypeUpdate")
-    public String ToEquipmentTypeUpdate(Integer id, Model model) {
-        model.addAttribute("id", id);
-        return "/merchants_manage/EquipmentTypeUpdate";
-    }
+//    /**
+//     * @param id
+//     * @param model
+//     * @return
+//     */
+//    @RequestMapping("ToEquipmentTypeUpdate")
+//    public String ToEquipmentTypeUpdate(Integer id, Model model) {
+//        model.addAttribute("id", id);
+//        return "/merchants_manage/EquipmentTypeUpdate";
+//    }
 
     /**
      * 商家添加跳转

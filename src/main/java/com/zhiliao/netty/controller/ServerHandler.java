@@ -25,7 +25,7 @@ public class ServerHandler extends Controller {
     protected void handlerReaderIdle(ChannelHandlerContext ctx) {
         // TODO Auto-generated method stub
         super.handlerReaderIdle(ctx);
-        System.err.println(" 客户端 " + ctx.channel().remoteAddress().toString() + " 读取器超时——关闭");
+        System.err.println(" Client： " + ctx.channel().remoteAddress().toString() + " Timeout——Close");
         ctx.close();
     }
 
@@ -39,7 +39,7 @@ public class ServerHandler extends Controller {
      */
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
-        System.err.println("  异常" + cause.toString());
+        System.err.println("  ERROR" + cause.toString());
     }
 
 

@@ -3,6 +3,7 @@ package com.zhiliao.service.equipment_manage;
 import com.zhiliao.dao.WlyyBusinessMapper;
 import com.zhiliao.pojo.WlyyBusiness;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -47,6 +48,7 @@ public class EquipmentTypeService {
      *
      * @param wlyyBusiness
      */
+    @Transactional
     public int updateByPrimaryKeySelective(WlyyBusiness wlyyBusiness) {
         return wlyyBusinessMapper.updateByPrimaryKeySelective(wlyyBusiness);
     }
@@ -58,6 +60,7 @@ public class EquipmentTypeService {
      * @param id
      * @return
      */
+    @Transactional
     public int deleteByPrimaryKey(Integer id) {
         return wlyyBusinessMapper.deleteByPrimaryKey(id);
     }
@@ -80,6 +83,7 @@ public class EquipmentTypeService {
      * @return
      * @throws Exception
      */
+    @Transactional
     public int insert(String business_name) throws Exception {
         WlyyBusiness wlyyBusiness = new WlyyBusiness();
         wlyyBusiness.setBusinessName(business_name);

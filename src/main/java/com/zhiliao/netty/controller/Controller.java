@@ -10,6 +10,8 @@ import static com.zhiliao.util.Hex22String.arr2Str;
 import static com.zhiliao.util.Hex22String.hexItr2Arr;
 
 /**
+ * 控制中心
+ *
  * @author Mr.Zhong
  * @create2019-08-16 9:33
  */
@@ -20,13 +22,16 @@ public class Controller extends ChannelInboundHandlerAdapter {
 //
 //    }
 
+    /**
+     * 接收到客户端发送的数据有（心跳数据包、字符指令）
+     *
+     * @param ctx
+     * @param msg
+     * @throws Exception
+     */
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
 
-
-        /**
-         * 接收到客户端发送的数据有（心跳数据包、字符指令）
-         */
 
         ByteBuf buf = (ByteBuf) msg;
         byte[] reg = new byte[buf.readableBytes()];
@@ -34,18 +39,25 @@ public class Controller extends ChannelInboundHandlerAdapter {
 
         //  将byte数组转换为指定编码格式的普通字符串
         String be = arr2Str(reg, "UTF-8");
-        System.out.println("收到客户端信息："+be);
+        System.out.println("Client message received ：" + be);
         //  获取传输过来的字符串信息
         String body = new String(reg, "UTF-8");
-        System.out.println("收到客户端信息："+body);
+        System.out.println("Client message received ：" + body);
 
-        ByteBuf respByteBuf = Unpooled.copiedBuffer(hexItr2Arr("8A0101119B"));
+        ByteBuf respByteBuf = Unpooled.copiedBuffer(hexItr2Arr("String"));
         //  发送给客户端
         ctx.writeAndFlush(respByteBuf);
 
 
     }
 
+    /**
+     * 状态控制器
+     *
+     * @param ctx
+     * @param evt
+     * @throws Exception
+     */
     @Override
     public void userEventTriggered(ChannelHandlerContext ctx, Object evt) throws Exception {
         IdleStateEvent stateEvent = (IdleStateEvent) evt;
@@ -65,16 +77,31 @@ public class Controller extends ChannelInboundHandlerAdapter {
         }
     }
 
+    /**
+     * 读写空闲
+     *
+     * @param ctx
+     */
     protected void handlerAllIdle(ChannelHandlerContext ctx) {
-        System.err.println("读写空闲");
+        //------
     }
 
+    /**
+     * 写空闲
+     *
+     * @param ctx
+     */
     protected void handlerWriterIdle(ChannelHandlerContext ctx) {
-        System.err.println("写空闲");
+        //------
     }
 
+    /**
+     * 读取器超时
+     *
+     * @param ctx
+     */
     protected void handlerReaderIdle(ChannelHandlerContext ctx) {
-        System.err.println("读取器超时");
+        //------
     }
 
 
@@ -88,8 +115,7 @@ public class Controller extends ChannelInboundHandlerAdapter {
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         // TODO Auto-generated method stub
 
-
-        System.err.println(" 已连接：" + ctx.channel().remoteAddress() + "===");
+        System.err.println(" The Connection ：" + ctx.channel().remoteAddress());
 
     }
 
@@ -103,7 +129,7 @@ public class Controller extends ChannelInboundHandlerAdapter {
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
         // TODO Auto-generated method stub
 
-        System.err.println(" 已断开：" + ctx.channel().remoteAddress() + "===");
+        System.err.println(" The Disconnect：" + ctx.channel().remoteAddress());
 
     }
 
