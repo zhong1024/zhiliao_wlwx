@@ -47,4 +47,14 @@ public class Server implements TypeData {
             workerGroup.shutdownGracefully();
         }
     }
+
+
+    public static void main(String[] args) {
+        Server server = new Server();
+        server.initServer(null);
+    }
+
+
+
+
 }

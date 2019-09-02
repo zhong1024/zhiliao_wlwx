@@ -191,6 +191,30 @@
                 div1.innerHTML = date1;
             }
 
+
+            // function systomd() {
+            //     var locator = new ActiveXObject ("WbemScripting.SWbemLocator");
+            //     var service = locator.ConnectServer(".");
+            //     //CPU信息
+            //     var cpu = new Enumerator (service.ExecQuery("SELECT * FROM Win32_Processor")).item();
+            //     var cpuType=cpu.Name,hostName=cpu.SystemName;
+            //     //内存信息
+            //     var memory = new Enumerator (service.ExecQuery("SELECT * FROM Win32_PhysicalMemory"));
+            //     for (var mem=[],i=0;!memory.atEnd();memory.moveNext()) mem[i++]={cap:memory.item().Capacity/1024/1024,speed:memory.item().Speed}
+            //     //系统信息
+            //     var system=new Enumerator (service.ExecQuery("SELECT * FROM Win32_ComputerSystem")).item();
+            //     var physicMenCap=Math.ceil(system.TotalPhysicalMemory/1024/1024),curUser=system.UserName,cpuCount=system.NumberOfProcessors
+            //
+            //
+            //     alert("physicMenCap:"+physicMenCap+"cpuType:"+cpuType+"memory:"+memory);
+            // }
+            //
+            //
+            // systomd();
+
+
+
+
             //使用定时器每秒向span写入当前时间
             setInterval("getDate()", 1000);
         </script>

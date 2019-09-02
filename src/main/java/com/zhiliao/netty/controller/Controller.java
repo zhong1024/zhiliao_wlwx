@@ -6,8 +6,8 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.handler.timeout.IdleStateEvent;
 
-import static com.zhiliao.util.Hex22String.arr2Str;
 import static com.zhiliao.util.Hex22String.hexItr2Arr;
+import static com.zhiliao.util.Hex22String.arr2HexStr;
 
 /**
  * 控制中心
@@ -37,16 +37,27 @@ public class Controller extends ChannelInboundHandlerAdapter {
         byte[] reg = new byte[buf.readableBytes()];
         buf.readBytes(reg);
 
-        //  将byte数组转换为指定编码格式的普通字符串
-        String be = arr2Str(reg, "UTF-8");
-        System.out.println("Client message received ：" + be);
+        //  byte数组转化为16进制字符串
+        String be = arr2HexStr(reg,false);
+        System.out.println("Client message received-Hex ：" + be);
         //  获取传输过来的字符串信息
         String body = new String(reg, "UTF-8");
-        System.out.println("Client message received ：" + body);
+        System.out.println("Client message received2-Str ：" + body);
 
-        ByteBuf respByteBuf = Unpooled.copiedBuffer(hexItr2Arr("String"));
-        //  发送给客户端
-        ctx.writeAndFlush(respByteBuf);
+
+        if("14796707710".equals(body)){
+            ByteBuf respByteBuf = Unpooled.copiedBuffer(hexItr2Arr("8A0101119B"));
+            //  发送给客户端
+            ctx.writeAndFlush(respByteBuf);
+        }
+        if ("3134373936373037373130".equals(be)) {
+            System.out.println("sleep:2000");
+            Thread.sleep(2000);
+        }
+
+//        ByteBuf respByteBuf = Unpooled.copiedBuffer(hexItr2Arr(""));
+//        //  发送给客户端
+//        ctx.writeAndFlush(respByteBuf);
 
 
     }
