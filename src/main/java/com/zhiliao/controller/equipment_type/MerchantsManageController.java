@@ -51,6 +51,7 @@ public class MerchantsManageController {
         List<WlyyDeviceType> MerchantsManageList = merchantsManageService.selectByExample();
         PageInfo<WlyyDeviceType> pageInfo = new PageInfo<>(MerchantsManageList);
 
+
         map.put("code", 0);
         map.put("msg", "");
         map.put("count", pageInfo.getTotal());  //总记录数

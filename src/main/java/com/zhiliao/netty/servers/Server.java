@@ -8,14 +8,25 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.timeout.IdleStateHandler;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
- * 服务
+ * 服务端
  *
  * @author Mr.Zhong
  * @create2019-08-16 9:24
  */
 public class Server implements TypeData {
 
+    //连接map
+    public static Map<String, ChannelHandlerContext> map = new HashMap<String, ChannelHandlerContext>();
+
+    /**
+     * 服务端
+     *
+     * @param args
+     */
     public void initServer(String[] args) {
         EventLoopGroup bossGroup = new NioEventLoopGroup(1);
 
@@ -40,21 +51,23 @@ public class Server implements TypeData {
             sync.channel().closeFuture().sync();
         } catch (InterruptedException e) {
             // TODO Auto-generated catch block
-            e.printStackTrace();
+            e.printStackTrace();                                // 打印异常
         } finally {
-            //优雅的关闭资源
-            bossGroup.shutdownGracefully();
+            bossGroup.shutdownGracefully();                     // 关闭资源
             workerGroup.shutdownGracefully();
         }
     }
 
 
+    /**
+     * 测试方法
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         Server server = new Server();
         server.initServer(null);
     }
-
-
 
 
 }

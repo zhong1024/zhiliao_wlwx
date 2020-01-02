@@ -16,6 +16,7 @@ import java.util.Map;
 
 /**
  * 设备信息Controller
+ *
  * @author Mr.Zhong
  * @create2019-08-01 15:24
  */
@@ -27,21 +28,21 @@ public class EquipmentDeviceController {
     EquipmentDeviceService equipmentDeviceService;
 
     @RequestMapping("ToEquipmentDeviceList")
-    public String ToEquipmentDeviceList(){
+    public String ToEquipmentDeviceList() {
         return "/equipment_manage/EquipmentDeviceList";
     }
 
 
     @RequestMapping("EquipmentDeviceList")
     @ResponseBody
-    public Map<String, Object> EquipmentDeviceList(String searContent, Integer page, Integer limit) throws Exception{
+    public Map<String, Object> EquipmentDeviceList(String searContent, Integer page, Integer limit) throws Exception {
         Map<String, Object> map = new HashMap<String, Object>();
 
         List<WlyyDevice> EquipmentDeviceList;
         PageHelper.startPage(page, limit);
-        if("".equals(searContent) || searContent==null) {
+        if ("".equals(searContent) || searContent == null) {
             EquipmentDeviceList = equipmentDeviceService.selectAllList();
-        }else{
+        } else {
             EquipmentDeviceList = equipmentDeviceService.selectAllListKey(searContent);
         }
         PageInfo<WlyyDevice> pageInfo = new PageInfo<>(EquipmentDeviceList);

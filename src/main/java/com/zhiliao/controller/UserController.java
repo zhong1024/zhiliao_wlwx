@@ -48,10 +48,17 @@ public class UserController {
         wlyyUser.setName(name);
         wlyyUser.setPassword(password);
         WlyyUser wlyyUsers = userService.login(wlyyUser);
+
         session.setAttribute("user", wlyyUsers);
         Map<String, Object> map = new HashMap<>();
-        map.put("user", wlyyUsers);
+        map.put("users", wlyyUsers);
         return map;
+    }
+
+    @RequestMapping("Toexits")
+    public String exits(HttpSession session){
+        session.removeAttribute("user");
+        return "/login";
     }
 
 

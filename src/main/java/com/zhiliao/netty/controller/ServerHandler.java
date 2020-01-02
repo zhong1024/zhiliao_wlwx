@@ -39,7 +39,7 @@ public class ServerHandler extends Controller {
      */
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
-        System.err.println("  ERROR" + cause.toString());
+        System.err.println("  ERROR" + cause.toString());       // 打印异常
     }
 
 
