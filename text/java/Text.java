@@ -41,7 +41,7 @@ public class Text {
 
         a.setName("0水果店");
         a.setAppleName("红富士");
-        a.setAppleNumber(0);
+        a.setAppleNumber(99);
         a.setApplePay(8.00);
         a.setType(true);
         shopList.add(a);
@@ -85,7 +85,7 @@ public class Text {
         if (shop != null) {
             System.out.println("=========================");
             System.out.println(shop.getName());
-            System.out.println(shop.getApplePay());
+            System.out.println(shop.getApplePay() + " 元/斤");
         } else {
             System.out.println("=========================");
             System.out.println("未找到合法苹果");
